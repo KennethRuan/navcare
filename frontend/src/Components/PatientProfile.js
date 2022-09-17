@@ -6,15 +6,15 @@ export default function PatientProfile(props){
     let {statusColor} = props
 
     let [showExtraInfo,setShowExtraInfo] = useState(false);
-    let [buttonText,setButtonText] = useState("Show More");
+    let [buttonText,setButtonText] = useState("Show More ↓");
 
     function handleShowMore(){
         setShowExtraInfo(!showExtraInfo)
 
         if (showExtraInfo)
-            setButtonText("Show More");
+            setButtonText("Show More ↓");
         else 
-            setButtonText("Show Less");
+            setButtonText("Show Less ↑");
     }
 
     return(

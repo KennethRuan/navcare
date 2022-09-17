@@ -20,7 +20,7 @@ export default function MapContainer(props){
     let {isDisplaying} = props
 
     const{ isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: "", 
+        googleMapsApiKey: "AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw", 
         libraries,
     }); 
 
