@@ -45,36 +45,3 @@ function App() {
 
 export default App;
 
-/**let [scheduleDisplay, setScheduleDisplay] = useState(true);
-  let [mapDisplay, setMapDisplay] = useState(false);
-
-  function handleScheduleTabClick(){
-    setScheduleDisplay(true);
-    setMapDisplay(false);
-  }
-  function handleMapTabClick(){
-    setScheduleDisplay(false);
-    setMapDisplay(true);
-  }
-  function Nav(){
-    return(
-      <div className="nav">
-        <div className="tab" onClick={handleScheduleTabClick}>
-          <span>Schedule</span>
-        </div>
-        <div className="tab" onClick={handleMapTabClick}>
-          <span>Tab</span>
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className="App">
-      <p>hello</p>
-      <Nav/>
-      <ProfileContainer isDisplaying={scheduleDisplay}/>
-      <MapContainer isDisplaying={mapDisplay}/>
-      <PatientProfile/>
-    </div>
-  ); */
