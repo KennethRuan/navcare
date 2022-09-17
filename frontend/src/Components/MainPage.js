@@ -12,9 +12,9 @@ export default function MainPage() {
     setScheduleDisplay(true);
     setMapDisplay(false);
   }
-  function handleMapTabClick(e){
-    setScheduleDisplay(false);
-    setMapDisplay(true);    
+  function handleMapTabClick(){
+    setScheduleDisplay(true);
+    setMapDisplay(true);
   }
   function Nav(){
     return(
