@@ -5,8 +5,8 @@ import {GoogleMap, useLoadScript, Marker, InfoWindow,} from "@react-google-maps/
 // define literals to avoid lots of rerendering
 const libraries = ["places"]; 
 const mapContainerStyle={
-    width:"100vw", 
-    height:"100vh", 
+    width:"50vw", 
+    height:"50vh", 
 }; 
 
 const center = {
@@ -15,17 +15,10 @@ const center = {
   };
 
 
-<<<<<<< HEAD
-export default function MapContainer(props){
-    let {isDisplaying} = props
-    return(
-        <div className="map-container" style={{display:(isDisplaying?"flex":"none")}}>
-            <span>map container</span>
-=======
 export default function MapContainer(){
 
     const{ isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY, 
+        googleMapsApiKey: "AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw", 
         libraries,
     }); 
 
@@ -36,7 +29,6 @@ export default function MapContainer(){
         <div>
             <GoogleMap mapContainerStyle = {mapContainerStyle} zoom={8} center={center}></GoogleMap>
             
->>>>>>> 0dbdbf79f9146c04202a305687a6905b64882e84
         </div>
 
     

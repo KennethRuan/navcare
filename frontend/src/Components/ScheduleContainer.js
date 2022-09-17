@@ -61,7 +61,7 @@ export default function ScheduleContainer(props){
             {
                 dummyJSON.map((patientInfo,index) => (
                     index == 0?
-                    <PatientProfile patientInfo={patientInfo} statusColor={"red"}/>
+                    <PatientProfile patientInfo={patientInfo} statusColor={"blue"}/>
                     :
                     <PatientProfile patientInfo={patientInfo} statusColor={"gray"}/>
 

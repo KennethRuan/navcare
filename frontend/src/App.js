@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 function App() {
 
-  let [scheduleDisplay, setScheduleDisplay] = useState(false);
+  let [scheduleDisplay, setScheduleDisplay] = useState(true);
   let [mapDisplay, setMapDisplay] = useState(false);
 
   function handleScheduleTabClick(){
