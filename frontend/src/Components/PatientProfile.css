@@ -1,0 +1,66 @@
+.profile-container{
+    min-width:200px;
+    max-width: 400px;
+    width:100%;
+    /*height:100px; /*tentative!*/
+    background-color:aqua;
+
+    display:flex;
+    flex-direction: column;
+    align-items:flex-start;
+}
+
+.patient-time-container{
+    width:100%;
+    height:40px;
+
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+}
+.patient-time{
+    font-size:1rem;
+}
+
+.content-container{
+    width:100%;
+    background-color:aquamarine;
+    min-height: 100px; /*tentative*/
+
+    display:flex;
+    
+}
+
+.profile-picture-container{
+    padding-top:10px;
+    width:50px;
+    background-color:pink;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.profile-picture{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background-color: beige;
+}
+
+.patient-info-container{
+    width:100%;
+    background-color:blue;
+}
+
+.top-content{
+    width:100%;
+    display:flex;
+}
+.patient-name{
+    margin-right:auto;
+}
+.travel-time{
+    margin-left:auto;
+}
+
+

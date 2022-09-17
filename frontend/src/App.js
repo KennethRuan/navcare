@@ -1,5 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import MapContainer from './Components/MapContainer.js';
+import ProfileContainer from './Components/ProfileContainer.js';
+import PatientProfile from './Components/PatientProfile';
 
 function App() {
   return (
@@ -9,6 +12,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <PatientProfile/>
         <a
           className="App-link"
           href="https://reactjs.org"
