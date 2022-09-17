@@ -7,9 +7,8 @@ class ClientSerializer(serializers.ModelSerializer):
         model = Client
         fields = ('id', 'name', 'address', 'description', 'completed')
 
-def displayAppointments(name):
-    data = ScheduleItem.objects.filter(psw__name=name)
-    post_list = serializers.serialize('json', list(data), fields=('psw','date','client','latitude','longitude','start_time','end_time'))
-
-    return HttpResponse(post_list)
+class AppointmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ScheduleItem
+        fields=('psw','date','client','latitude','longitude','start_time','end_time')
 

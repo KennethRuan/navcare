@@ -24,5 +24,6 @@ router.register(r'clients', views.ClientView, 'clients')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/appointments/', views.AppointmentView.as_view(), name="appointments"),
     path('', include('psw.urls')),
 ]
