@@ -16,11 +16,12 @@ const center = {
 
 
 
+
 export default function MapContainer(props){
     let {isDisplaying} = props
 
     const{ isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: "AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw", 
+        googleMapsApiKey: "", 
         libraries,
     }); 
 
@@ -29,10 +30,9 @@ export default function MapContainer(props){
 
     return(
         <div className="map-container" style={{display:(isDisplaying?"flex":"none")}}>
-            <GoogleMap mapContainerStyle = {mapContainerStyle} zoom={8} center={center}></GoogleMap>
+            <GoogleMap mapContainerStyle = {mapContainerStyle} center={center} zoom={8} options={{ mapId:"a8adcd4aada0b50f" }}></GoogleMap>
         </div>
-
-    
+        
    
     )
 }

@@ -13,7 +13,7 @@ export default function MainPage() {
     setMapDisplay(false);
   }
   function handleMapTabClick(){
-    setScheduleDisplay(false);
+    setScheduleDisplay(true);
     setMapDisplay(true);
   }
   function Nav(){
