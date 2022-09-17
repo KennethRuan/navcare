@@ -16,8 +16,24 @@
   display:flex;
 }
 
+
+
 .tab{
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border:0;
   flex:1;
+  background-color:rgb(183, 205, 221);
+}
+
+.tab-active{
+  flex:2;
+  
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border:1px solid black;
+  border-bottom:0;
+  background-color:rgb(255, 255, 255);
 }
 
 @media only screen and (min-width: 800px) {

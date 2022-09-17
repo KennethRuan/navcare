@@ -8,21 +8,21 @@ export default function MainPage() {
   let [scheduleDisplay, setScheduleDisplay] = useState(true);
   let [mapDisplay, setMapDisplay] = useState(false);
 
-  function handleScheduleTabClick(){
+  function handleScheduleTabClick(e){
     setScheduleDisplay(true);
     setMapDisplay(false);
   }
-  function handleMapTabClick(){
+  function handleMapTabClick(e){
     setScheduleDisplay(false);
-    setMapDisplay(true);
+    setMapDisplay(true);    
   }
   function Nav(){
     return(
       <div className="nav">
-        <button className="tab" onClick={handleScheduleTabClick}>
+        <button className={scheduleDisplay?" tab-active":"tab"} onClick={handleScheduleTabClick}>
           Schedule
         </button>
-        <button className="tab" onClick={handleMapTabClick}>
+        <button className={mapDisplay?" tab-active":"tab"} onClick={handleMapTabClick}>
           Map
         </button>
       </div>
