@@ -1,10 +1,18 @@
 import './App.css';
-import MainPage from './MainPage.js'
+import MainPage from './Components/MainPage.js'
+import {useState} from 'react'
+import Login from './Components/Login';
 
 function App() {
+  let [screenNum, setScreenNum] = useState(0);
+  let [patientData, setPatientData] = useState(null);
 
   return (
-   <MainPage/>
+    <>
+    {screenNum === 0 &&
+     <Login setScreenNum={setScreenNum} setPatientData={setPatientData}/>}
+    {screenNum === 1 && <MainPage/>}
+    </>
   );
 }
 

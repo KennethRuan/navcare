@@ -5,8 +5,8 @@ import {GoogleMap, useLoadScript, Marker, InfoWindow,} from "@react-google-maps/
 // define literals to avoid lots of rerendering
 const libraries = ["places"]; 
 const mapContainerStyle={
-    width:"50vw", 
-    height:"50vh", 
+    flex:1, 
+    height:"100vh", 
 }; 
 
 const center = {
@@ -20,7 +20,7 @@ export default function MapContainer(props){
     let {isDisplaying} = props
 
     const{ isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: "", 
+        googleMapsApiKey: "AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw", 
         libraries,
     }); 
 

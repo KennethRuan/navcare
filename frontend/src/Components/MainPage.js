@@ -1,11 +1,11 @@
 import './MainPage.css';
-import MapContainer from './Components/MapContainer.js';
-import ScheduleContainer from './Components/ScheduleContainer.js';
+import MapContainer from './MapContainer.js';
+import ScheduleContainer from './ScheduleContainer.js';
 import { useState } from 'react';
 
 export default function MainPage() {
 
-  let [scheduleDisplay, setScheduleDisplay] = useState(false);
+  let [scheduleDisplay, setScheduleDisplay] = useState(true);
   let [mapDisplay, setMapDisplay] = useState(false);
 
   function handleScheduleTabClick(){
@@ -34,8 +34,8 @@ export default function MainPage() {
     <div className="main-page">
       <Nav/>
       <div className="main-content-container">
-        <MapContainer isDisplaying={mapDisplay}/>
         <ScheduleContainer isDisplaying={scheduleDisplay}/>
+        <MapContainer isDisplaying={mapDisplay}/>
       </div>    
     </div>
   );
