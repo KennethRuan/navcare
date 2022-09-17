@@ -1,29 +1,6 @@
 .App {
-  
-  display:flex;
-  flex-direction:column;
+
 }
 
-.main-content-container{
-  display:flex;
-  flex-direction:row;
-}
-
-.nav{
-  background-color:white;
-
-  width:100%;
-  display:flex;
-}
-
-.tab{
-  flex:1;
-}
-
-@media only screen and (min-width: 800px) {
-  .nav{
-    display: none !important;
-  }
-}
 
 
