@@ -94,7 +94,7 @@ export default function MapContainer (props) {
 
   return (
     <div className="map-container" style={{display:(isDisplaying?"flex":"none")}}>
-        <span>Next Appointment </span>
+        <span className="map-top-text">Next Appointment:</span>
     {isLoaded ? (
       <div style={{ height: "300px", width: "100%" }}>
         <GoogleMap
