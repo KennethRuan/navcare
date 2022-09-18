@@ -8,23 +8,26 @@ export default function Login(props){
 
     function showSignUpForm(){
         setAction("Sign Up")
-        document.getElementById("sign-up-account-prompt").style.display = "none";
-        document.getElementById("login-account-prompt").style.display = "block";
     }
 
     function showLoginForm(){
         setAction("Login")
-        document.getElementById("login-account-prompt").style.display = "none";
-        document.getElementById("sign-up-account-prompt").style.display = "block";
     }
 
     function handleFormSubmission(e){
         e.preventDefault();
+        if (loggingInAsDoctor)
+        setScreenNum(2);
+        else
         setScreenNum(1);
     }
 
     function handleChange(e){
         setUserName(e.target.value)
+    }
+
+    function changeAccount(){
+        setLoggingInAsDoctor(!loggingInAsDoctor);
     }
 
     return(
@@ -40,15 +43,20 @@ export default function Login(props){
                 <button className="submit-button" type="submit" for="form-field-container">{action}</button>
             </form>
             <div className="user-action">
-                <div id="login-account-prompt" style={{display:"none"}}>
+                {action === "login" ? ( <div id="login-account-prompt">
                     <span className="account-status-question">Already have an account?</span>
                     <button className="small-login-button" onClick={showLoginForm}>Login</button>
-                </div>
-                <div id="sign-up-account-prompt">
+                </div>)
+                :
+                (<div id="sign-up-account-prompt">
                     <span className="account-status-question">Don't have an account?</span>
                     <button className="small-sign-up-button" onClick={showSignUpForm}>Sign Up</button>
-                </div>
+                </div>)}
+                <button class="change-account-login" onClick={changeAccount}>
+                    {loggingInAsDoctor?"Login as PSW":"Login as doctor"}
+            </button>
             </div>
+            
         </div>
     )
 }
