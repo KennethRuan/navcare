@@ -1,6 +1,5 @@
 .schedule-container{
     flex:1;
-
     overflow-y: scroll;
 
     flex-direction:column;
