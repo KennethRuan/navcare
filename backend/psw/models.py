@@ -5,9 +5,10 @@ from django.core.validators import MaxValueValidator
 # Create your models here.
 
 class Client(models.Model):
-    name = models.CharField(max_length=120)
-    address = models.TextField()
-    description = models.TextField()
+    name = models.CharField(max_length=120, unique=True)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+    notes = models.TextField()
 
     def __str__(self):
         return self.name
@@ -25,6 +26,7 @@ class ScheduleItem(models.Model):
     psw = models.ForeignKey(PSW, db_index=True, on_delete=models.CASCADE)
     date = models.CharField(max_length = 8)
     client = models.ForeignKey('Client', on_delete=models.CASCADE)
+    appointment_desc = models.TextField()
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
 
@@ -34,6 +36,8 @@ class ScheduleItem(models.Model):
 
     def __str__(self):
         return str(self.client) + "_" + str(self.date)
+
+
 
 
 
