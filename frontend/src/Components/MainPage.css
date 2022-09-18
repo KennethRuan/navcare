@@ -18,6 +18,7 @@
   background-color:white;
   width:100%;
   display:flex;
+  margin-inline: 5px;
 }
 
 
@@ -29,26 +30,24 @@
 }
 
 .tab{
-  border: 1px solid #DCE2E8;
+  border: transparent;
+  border-bottom: 2px solid;
   border-radius: 2px 2px 0px 0px;
-  flex:1;
-  background: #F2F6FB;
+  border-color: #DCE2E8;
+  background: #fff;
   height: 35px;
-  margin-left: 2px;
-  margin-right: 2px;
+  flex:1;
 }
 
 .tab-active{
-  flex:1;
-  
   border-radius: 2px 2px 0px 0px;
-  border-width: 1px 1px 0px 1px;
   border-style: solid;
-  border-color: #DCE2E8;
-  border-bottom:0;
-  background-color:rgb(255, 255, 255);
-  margin-left: 2px;
-  margin-right: 2px;
+  border: transparent;
+  border-bottom: 2px solid;
+  border-color: #5A73C5;
+  background: #fff;
+  flex:1;
+  /* transition: border-color 0.15s ease-in-out; */
 }
 
 @media only screen and (min-width: 600px) {
