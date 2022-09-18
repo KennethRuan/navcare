@@ -1,11 +1,34 @@
 import'./DoctorForm.css';
 import {useState} from 'react'
 import axios from 'axios';
-import { GoogleMap } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript } from '@react-google-maps/api';
+
+import usePlacesAutocomplete, {
+    getGeocode,
+    getLatLng,
+  } from "use-places-autocomplete";
+  import {
+    Combobox,
+    ComboboxInput,
+    ComboboxPopover,
+    ComboboxList,
+    ComboboxOption,
+  } from "@reach/combobox";
+  import "@reach/combobox/styles.css";
 
 let google = window.google;
 
-export default function(){
+export default function DoctorForm() {
+    const { isLoaded } = useLoadScript({
+      googleMapsApiKey: "AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw",
+      libraries: ["places"],
+    });
+  
+    if (!isLoaded) return <div>Loading...</div>;
+    return <FormDisplay />;
+  }
+
+function FormDisplay(){
     let [dataObj,setDataObj] = useState({
         name:"",
         hour:0,
@@ -32,7 +55,7 @@ export default function(){
 
         let geocoder = new google.maps.Geocoder();
         let address = "200 Ring Rd, Waterloo, ON N2L 3G1"
-        geocoder.geocode( { 'address': address}, function(results, status) {
+        geocoder.geocode( { 'address': dataObj.address}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK)
             {
                 lat = results[0].geometry.location.lat()
@@ -52,6 +75,41 @@ export default function(){
             .then(res => console.log(res))
     }
 
+    const PlacesAutocomplete = () => {
+        const {
+          ready,
+          value,
+          setValue,
+          suggestions: { status, data },
+          clearSuggestions,
+        } = usePlacesAutocomplete();
+      
+        const handleSelect = async (address) => {
+          setValue(address, false);
+          clearSuggestions();
+        };
+      
+        return (
+          <Combobox onSelect={handleSelect}>
+            <ComboboxInput
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              disabled={!ready}
+              className="combobox-input"
+              placeholder="Search an address"
+            />
+            <ComboboxPopover>
+              <ComboboxList>
+                {status === "OK" &&
+                  data.map(({ place_id, description }) => (
+                    <ComboboxOption key={place_id} value={description} />
+                  ))}
+              </ComboboxList>
+            </ComboboxPopover>
+          </Combobox>
+        );
+    }
+
     return(
         <div className="doctor-form-container">
             <form action="" id="doctor-form">
@@ -59,8 +117,8 @@ export default function(){
                 <input type="text" name="name" id="name" onChange={updateData("name")}/>
 
                 <label for="start-time">Start Time</label>
-                <div>
-                    <select name="hour" id="hour" onChange={updateData("hour")}>
+                <div className='select-dropdown'>
+                    <select className='selector' name="hour" id="hour" onChange={updateData("hour")}>
                         <option value="0">12am</option>
                         <option value="4">1am</option>
                         <option value="8">2am</option>
@@ -86,7 +144,7 @@ export default function(){
                         <option value="88">10pm</option>
                         <option value="92">11pm</option>
                     </select>
-                    <select name="minute" id="minute" onChange={updateData("minute")}>
+                    <select className='selector' name="minute" id="minute" onChange={updateData("minute")}>
                         <option value="0">00min</option>
                         <option value="1">15min</option>
                         <option value="2">30min</option>
@@ -95,30 +153,32 @@ export default function(){
                 </div>
 
                 <span>Select the Appointment Length</span>
-    
-                <label for="15">
-                    <input type="radio" id="15" name="value" value="1" onChange={updateData("endTime")}/>
-                    15 min
-                    </label>  
-      
-                
-                    <label for="30">
-                <input type="radio" id="30" name="value" value="2" onChange={updateData("endTime")}/>
-                    30 min</label>
-                
+                <div className="length-select">
+                    <label for="15">
+                        <input type="radio" id="15" name="value" value="1" onChange={updateData("endTime")}/>
+                        15 min
+                        </label>  
+        
+                    
+                        <label for="30">
+                    <input type="radio" id="30" name="value" value="2" onChange={updateData("endTime")}/>
+                        30 min</label>
+                    
 
-            
-                    <label for="45">
-                <input type="radio" id="45" name="value" value="3" onChange={updateData("endTime")}/>
-                45 min</label>
+                
+                        <label for="45">
+                    <input type="radio" id="45" name="value" value="3" onChange={updateData("endTime")}/>
+                    45 min</label>
 
-                <label for="60">
-                <input type="radio" id="60" name="value" value="4" onChange={updateData("endTime")}/>
-                60 min</label>
-           
+                    <label for="60">
+                    <input type="radio" id="60" name="value" value="4" onChange={updateData("endTime")}/>
+                    60 min</label>
+                </div>
 
                 <label for="address" >Patient Address</label>
-                <input type="text" name="address" id="address" onChange={updateData("address")}/>
+                <div className="places-container">
+                    <PlacesAutocomplete/>
+                </div>
 
                 <label for="description" >Patient Description</label>
                 <input type="text" name="description" id="description" onChange={updateData("description")} />
