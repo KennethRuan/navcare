@@ -1,20 +1,35 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import PatientProfile from './PatientProfile';
 import './ScheduleContainer.css';
+import axios from 'axios';
 
 export default function ScheduleContainer(props){
     let {isDisplaying,userName} = props
     let [patientData, setPatientData] = useState(null)
 
         useEffect(() => {
-            fetch("/api/appointments",
-                { params: {
-                    user: props.user
-                }})
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    setPatientData(data)})
+            console.log(userName)
+            axios.request({
+                method: 'GET',
+                url: '/api/appointments',
+                params: {
+                  user: userName
+                },
+              }).then(res => {
+                console.log(res.data)
+                setPatientData(res.data)
+              }); 
+
+
+            // fetch("/api/appointments",
+            //     { params: {
+            //         user: props.userName
+            //     }})
+            //     .then(res => res.json())
+            //     .then(data => {
+            //         console.log(data)
+            //         setPatientData(data)
+            //     })
 
         },[])
 

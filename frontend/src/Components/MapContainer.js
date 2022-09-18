@@ -12,11 +12,6 @@ import {
 
 // define literals to avoid lots of rerendering
 const libraries = ["places"]; 
-const mapContainerStyle={
-    height:"300px",
-    width:"100%"
-
-}; 
 
 const center = {
   lat: 43.6532,
@@ -99,9 +94,9 @@ export default function MapContainer (props) {
 
   return (
     <div className="map-container" style={{display:(isDisplaying?"flex":"none")}}>
-    <span>Next Appointment</span>
+        <span>Next Appointment </span>
     {isLoaded ? (
-      <div style={{ height:"300px",width:"100%" }}>
+      <div style={{ height: "300px", width: "100%" }}>
         <GoogleMap
           center={center}
           zoom={15}
