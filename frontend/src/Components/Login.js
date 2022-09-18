@@ -33,7 +33,7 @@ export default function Login(props){
                 <img class="main-page-logo" src="https://i.postimg.cc/dtHpH92t/HTN2022-Logo.png" alt="" />
             </div>
             <form action="" id="form-field-container" class="form-field-container" onSubmit={handleFormSubmission}>
-                <label for="username" class="login-page-label">Email:</label>
+                <label for="username" class="login-page-label">Username:</label>
                 <input className="input-box" type="text" name="username" onChange={handleChange}/>
                 <label for="password" class="login-page-label">Password:</label>
                 <input className="input-box" type="password" name="username"/>
