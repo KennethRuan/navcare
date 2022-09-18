@@ -1,5 +1,6 @@
 import './MapContainer.css'
 import { useRef, useState, useEffect } from 'react'
+import routes from "./routes.json";
 
 import {
   GoogleMap,
@@ -22,7 +23,7 @@ const center = {
   lng: -79.3832
 }
 
-export default function MapContainer () {
+export default function MapContainer (props) {
   let {isDisplaying} = props
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw',
@@ -38,6 +39,15 @@ export default function MapContainer () {
   const originRef = useRef()
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destiantionRef = useRef()
+ 
+  const routesCopy = routes.map(route => { //get a json file and map it out into an array of objects 
+    return {
+      location: { lat: route.location.lat, lng: route.location.lng },
+      stopover: true
+    };
+  });
+
+  console.log(routesCopy);
 
   useEffect(() => {
     // console.log(loadError);
@@ -55,10 +65,6 @@ export default function MapContainer () {
   // if(!isLoaded) return "Loading Maps";
 
   async function calculateRoute () {
-    // if (originRef.current.value === '' || destiantionRef.current.value === '') {
-    //   return
-    // }
-    // eslint-disable-next-line no-undef
     const directionsService = new google.maps.DirectionsService()
     const results = await directionsService.route({
       origin: {
@@ -70,12 +76,17 @@ export default function MapContainer () {
         lng: -79.3838
       },
       // eslint-disable-next-line no-undef
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: google.maps.TravelMode.DRIVING, 
+      waypoints: routesCopy,
     })
     console.log(results);
     setDirectionsResponse(results)
-    setDistance(results.routes[0].legs[0].distance.text)
-    setDuration(results.routes[0].legs[0].duration.text)
+    // setDistance(results.routes[0].legs[0].distance.text)
+    // setDuration(results.routes[0].legs[0].duration.text)
+  }
+
+  function displayRoutes(){
+
   }
 
   function clearRoute () {
@@ -87,8 +98,10 @@ export default function MapContainer () {
   }
 
   return (
-    isLoaded ? (
-      <div style={{ height: "100vh", width: "100vw" }}>
+    <div className="map-container" style={{display:(isDisplaying?"flex":"none")}}>
+    <span>Next Appointment</span>
+    {isLoaded ? (
+      <div style={{ height:"300px",width:"100%" }}>
         <GoogleMap
           center={center}
           zoom={15}
@@ -106,8 +119,12 @@ export default function MapContainer () {
           {directionsResponse && (
             <DirectionsRenderer directions={directionsResponse} />
           )}
+          {directionsResponse && (
+            <DirectionsRenderer directions={directionsResponse} />
+          )}
         </GoogleMap>
       </div>
-    ) : (<div><h1>test</h1></div>)
+    ) : (<div><h1>test</h1></div>)}
+    </div>
   )
 }
