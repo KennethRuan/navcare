@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 export default function Login(props){
     let [action, setAction] = useState("Login")
+    let [loggingInAsDoctor,setLoggingInAsDoctor] = useState(false);
     let {setScreenNum, setUserName} = props
 
     function showSignUpForm(){
@@ -28,10 +29,10 @@ export default function Login(props){
                 <button onClick={showLoginForm}>Login</button>
                 <button onClick={showSignUpForm}>Sign Up</button>
             </div>
-            <form action="" id="form-field-container" class="form-field-container" onSubmit={handleFormSubmission}>
+            <form action="" id="nurse-login" class="form-field-container" onSubmit={handleFormSubmission}>
                 <input type="text" name="username" onChange={handleChange}/>
                 <input type="password" name="username"/>
-                <button type="submit" for="form-field-container">{action}</button>
+                <button type="submit" for="nurse-login">{action}</button>
             </form>
         </div>
     )
