@@ -7,22 +7,19 @@ export default function ScheduleContainer(props){
     let {isDisplaying,userName} = props
     let [patientData, setPatientData] = useState("")
 
-        useEffect(() => {
-            console.log(userName)
-            axios.request({
-                method: 'GET',
-                url: '/api/appointments',
-                params: {
-                  user: userName
-                },
-              }).then(res => {
-                console.log(res.data)
-                setPatientData(res.data)
-              }); 
-
-
-
-        },[])
+    useEffect(() => {
+        console.log(userName)
+        axios.request({
+            method: 'GET',
+            url: '/api/appointments',
+            params: {
+                user: userName
+            },
+            }).then(res => {
+            console.log(res.data)
+            setPatientData(res.data)
+            }); 
+    },[])
 
     
     
