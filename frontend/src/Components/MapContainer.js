@@ -1,6 +1,8 @@
 import './MapContainer.css'
 import { useRef, useState, useEffect } from 'react'
 import routes from "./routes.json";
+import axios from 'axios';
+
 
 import {
   GoogleMap,
@@ -22,7 +24,7 @@ const center = {
 }
 
 export default function MapContainer (props) {
-  let {isDisplaying} = props
+  let {isDisplaying, userName} = props
   // const { isLoaded, loadError } = useLoadScript({
   //   googleMapsApiKey: 'AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw',
   //   libraries
@@ -32,6 +34,7 @@ export default function MapContainer (props) {
   const [directionsResponse, setDirectionsResponse] = useState(null)
   const [distance, setDistance] = useState('')
   const [duration, setDuration] = useState('')
+  const [routesData, setRoutesData] = useState("")
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef()
@@ -44,6 +47,18 @@ export default function MapContainer (props) {
       stopover: true
     };
   });
+  useEffect(() => {
+    axios.request({
+        method: 'GET',
+        url: '/api/appointments',
+        params: {
+          user: userName
+        },
+      }).then(res => {
+        console.log(res.data);
+        setRoutesData(res.data);
+      }); 
+    });
   const [origin, setOrigin] = useState(null);
   const [destination, setDestination] = useState(null);
   const [waypoints, setwaypoints] = useState(null);
@@ -99,10 +114,6 @@ export default function MapContainer (props) {
     }
     setup();
   }, [origin, destination, waypoints])
-
-  function displayRoutes(){
-
-  }
 
   function clearRoute () {
     setDirectionsResponse(null)
