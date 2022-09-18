@@ -33,6 +33,10 @@ export default function Login(props){
     return(
         <div className="login-container">
             <div>
+                <span class="top-text">Welcome to <span class="righteous-font" style={{color:"#6B98E4"}}>Nav</span><span class="righteous-font" style={{color:"#FB8D7E"}}>care</span>!</span>
+                <span class="bottom-text">Please log in or sign up to continue.</span>
+            </div>
+            <div>
                 <img class="main-page-logo" src="https://i.postimg.cc/dtHpH92t/HTN2022-Logo.png" alt="" />
             </div>
             <form action="" id="form-field-container" class="form-field-container" onSubmit={handleFormSubmission}>

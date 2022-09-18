@@ -17,6 +17,7 @@
   .map-top-text {
     margin-top: 15px;
     margin-bottom: 15px;
+    font-weight: 600;
     align-self: flex-start;
   }
 

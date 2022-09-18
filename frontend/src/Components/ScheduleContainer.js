@@ -21,15 +21,6 @@ export default function ScheduleContainer(props){
               }); 
 
 
-            // fetch("/api/appointments",
-            //     { params: {
-            //         user: props.userName
-            //     }})
-            //     .then(res => res.json())
-            //     .then(data => {
-            //         console.log(data)
-            //         setPatientData(data)
-            //     })
 
         },[])
 
@@ -42,7 +33,7 @@ export default function ScheduleContainer(props){
                     index == 0?
                     <PatientProfile patientInfo={patientInfo} statusColor={"#FB8D7E"}/>
                     :
-                    <PatientProfile patientInfo={patientInfo} statusColor={"#B3C3D3"}/>
+                    <PatientProfile patientInfo={patientInfo} statusColor={"#F6D2CD"}/>
 
                 ))
             }
