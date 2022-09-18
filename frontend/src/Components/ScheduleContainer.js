@@ -4,18 +4,15 @@ import './ScheduleContainer.css';
 
 export default function ScheduleContainer(props){
     let {isDisplaying,userName} = props
-    let [patientData, setPatientData] = useState(null)
+    let [patientData, setPatientData] = useState("")
 
         useEffect(() => {
-            fetch("/api/appointments",
-                { params: {
-                    user: props.user
-                }})
+            console.log(userName);
+            fetch("/api/appointments",{ params: { user: userName}})
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
                     setPatientData(data)})
-
         },[])
 
     
