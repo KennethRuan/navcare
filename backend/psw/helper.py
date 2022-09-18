@@ -82,7 +82,7 @@ def schedule(schedule_item):
 
             for i in range(len(sorted_schedule)):
                 # Iterates until the next job is later than the requested jobs end time
-                if sorted_schedule[i].start_time > cli_end_time+1: 
+                if sorted_schedule[i].start_time > cli_end_time: 
                     # Check if the job starts after the PSW's previous job
                     if i-1 < 0 or sorted_schedule[i-1].end_time < cli_start_time -1:
                         available = True

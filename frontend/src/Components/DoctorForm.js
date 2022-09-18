@@ -1,5 +1,9 @@
 import'./DoctorForm.css';
 import {useState} from 'react'
+import axios from 'axios';
+import { GoogleMap } from '@react-google-maps/api';
+
+let google = window.google;
 
 export default function(){
     let [dataObj,setDataObj] = useState({
@@ -23,8 +27,29 @@ export default function(){
 
     function submitDoctorForm(e){
         e.preventDefault();
-        
+        let lat;
+        let long; 
 
+        let geocoder = new google.maps.Geocoder();
+        let address = "200 Ring Rd, Waterloo, ON N2L 3G1"
+        geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK)
+            {
+                lat = results[0].geometry.location.lat()
+                long = results[0].geometry.location.lng()
+                post(lat,long);
+            }
+        });
+
+       
+    }
+
+    function post(lat,long){
+        axios.post(
+            '/api/appointments/', {
+                data: {...dataObj,"lat":lat,"long":long}
+            })
+            .then(res => console.log(res))
     }
 
     return(
