@@ -1,5 +1,6 @@
 import './MapContainer.css'
 import { useRef, useState, useEffect } from 'react'
+import PatientProfile from './PatientProfile.js'
 import routes from "./routes.json";
 import axios from 'axios';
 
@@ -25,6 +26,7 @@ const center = {
 
 export default function MapContainer (props) {
   let {isDisplaying, userName} = props
+  let [upcomingPatient,setUpcomingPatient] = useState(null);
   // const { isLoaded, loadError } = useLoadScript({
   //   googleMapsApiKey: 'AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw',
   //   libraries
@@ -46,6 +48,8 @@ export default function MapContainer (props) {
     }).then(res => {
       // console.log(res.data.json());
       console.log(res.data);
+      setUpcomingPatient(res.data[0]);
+      console.log("upcoming patient:"+upcomingPatient)
       const newArray = res.data.map(({ latitude, longitude }) => ({
         lat: parseFloat(latitude),
         lng: parseFloat(longitude),
@@ -171,6 +175,7 @@ export default function MapContainer (props) {
           )}
         </GoogleMap>
       </div>
+      {upcomingPatient && <PatientProfile patientInfo={upcomingPatient} statusColor={"#FB8D7E"}/>}
     </div>
   )
 }
