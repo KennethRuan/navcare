@@ -29,21 +29,23 @@ class AppointmentView(generics.ListAPIView):
         return ScheduleItem.objects.filter(psw__name=self.request.GET.get('user','')).order_by('start_time')
 
     def post(self, request):
-        schedule_item = {}
-        schedule_item["cli_name"] = request.cli_name
-        schedule_item["cli_lat"]
-        schedule_item["cli_lon"]
-        schedule_item["cli_notes"]
-        schedule_item["date"]
-        schedule_item["start_time"]
-        schedule_item["end_time"]
-        schedule_item["apmt_desc"]
+        print(request.data)
 
-        schedule(schedule_item)
+        # schedule_item = {}
+        # schedule_item["cli_name"] = request.cli_name
+        # schedule_item["cli_lat"]
+        # schedule_item["cli_lon"]
+        # schedule_item["cli_notes"]
+        # schedule_item["date"]
+        # schedule_item["start_time"]
+        # schedule_item["end_time"]
+        # schedule_item["apmt_desc"]
+
+        # schedule(schedule_item)
 
         return Response({}, status=status.HTTP_200_OK)    
 
 def main(request):
-    schedule()
+    # schedule()
     return HttpResponse("Processed the closest PSWs")
 
