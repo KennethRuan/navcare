@@ -7,6 +7,7 @@
 .logo{
   width:150px;
   display:flex;
+  margin-bottom: 20px;
 }
 
 .main-content-container{
