@@ -36,7 +36,6 @@ class AppointmentView(generics.ListAPIView):
     def post(self, request):
         print(request.data)
 
-<<<<<<< HEAD
         data = request.data['data']
 
         print(data)
@@ -53,19 +52,6 @@ class AppointmentView(generics.ListAPIView):
 
         # print(schedule_item)
         schedule(schedule_item)
-=======
-        # schedule_item = {}
-        # schedule_item["cli_name"] = request.cli_name
-        # schedule_item["cli_lat"]
-        # schedule_item["cli_lon"]
-        # schedule_item["cli_notes"]
-        # schedule_item["date"]
-        # schedule_item["start_time"]
-        # schedule_item["end_time"]
-        # schedule_item["apmt_desc"]
-
-        # schedule(schedule_item)
->>>>>>> a061f3f0e9b7ec27aaee201a4be088bcd2497916
 
         return Response({}, status=status.HTTP_200_OK)    
 
