@@ -1,6 +1,8 @@
 import './MapContainer.css'
 import { useRef, useState, useEffect } from 'react'
 import routes from "./routes.json";
+import axios from 'axios';
+
 
 import {
   GoogleMap,
@@ -22,7 +24,7 @@ const center = {
 }
 
 export default function MapContainer (props) {
-  let {isDisplaying} = props
+  let {isDisplaying, userName} = props
   // const { isLoaded, loadError } = useLoadScript({
   //   googleMapsApiKey: 'AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw',
   //   libraries
@@ -32,21 +34,46 @@ export default function MapContainer (props) {
   const [directionsResponse, setDirectionsResponse] = useState(null)
   const [distance, setDistance] = useState('')
   const [duration, setDuration] = useState('')
+  const [routesData, setRoutesData] = useState(null)
+  useEffect(() => {
+    console.log(userName)
+    axios.request({
+      method: 'GET',
+      url: '/api/appointments',
+      params: {
+        user: userName
+      },
+    }).then(res => {
+      // console.log(res.data.json());
+      console.log(res.data);
+      const newArray = res.data.map(({ latitude, longitude }) => ({
+        lat: parseFloat(latitude),
+        lng: parseFloat(longitude),
+      }));
+
+      setRoutesData(newArray);
+    }); 
+  }, []);
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef()
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destiantionRef = useRef()
  
-  const routesCopy = routes.map(route => { //get a json file and map it out into an array of objects 
-    return {
-      location: { lat: route.location.lat, lng: route.location.lng },
-      stopover: true
-    };
-  });
+  // const routesCopy = {
+  //   location: { lat: routesData.lat, lng: routesData.lng },
+  // };
+
+  // const routesCopy = routesData.map(route => { //get a json file and map it out into an array of objects 
+  //   return {
+  //     location: { lat: routesData.latitude, lng: routesData.longitude },
+  //     stopover: true
+  //   };
+  // });
+  
   const [origin, setOrigin] = useState(null);
   const [destination, setDestination] = useState(null);
-  const [waypoints, setwaypoints] = useState(null);
+  const [waypoints, setWaypoints] = useState(null);
   
   // console.log(routesCopy);
   
@@ -58,51 +85,58 @@ export default function MapContainer (props) {
   //   }
   // }, [isLoaded]);
   
-  useEffect(() => {
-    calculateRoute();
-  }, []);
+  // useEffect(() => {
+  //   calculateRoute();
+  // }, [map]);
 
   useEffect(() => {
+    console.log("Here"); 
+    if(routesData){
+      console.log(routesData);
+      calculateRoute();
+    }
     console.log(map);
-  }, [map]);
+    
+  }, [map,routesData]);
 
   // if(loadError) return "Error loading map";
   // if(!isLoaded) return "Loading Maps";
 
-  async function calculateRoute () {
-
-    if(routesCopy.length==1){
-      setOrigin(routesCopy[0]); //change to home address of psw
-      setDestination(routesCopy[0]);   
-    }else{
-      setOrigin(routesCopy[0]); 
-      setDestination(routesCopy[routesCopy.length-1]); 
-      setwaypoints(routesCopy.slice(0, -1));
+  function calculateRoute () {
+    const routesIndex = routesData.length-1;
+    setOrigin({lat: 43.461629, lng: -80.516897}); //change to home address of psw 
+    console.log(routesData);
+    if(routesData.length==1){
+      setDestination(routesData[0]);  
+    }else{ 
+      setDestination(routesData[routesData.length-1]); 
+      setWaypoints(routesData.slice(0,-1).map((entry) => ({
+        location: {...entry},
+      })));
     }
+    console.log(routesData.slice(0,-1));
   
-    // setDistance(results.routes[0].legs[0].distance.text)
-    // setDuration(results.routes[0].legs[0].duration.text)
   }
 
   useEffect(() => {
+    console.log("HEREERE");
+
     async function setup() {
       const directionsService = new google.maps.DirectionsService() 
+      console.log(directionsService);
       const results = await directionsService.route({
-        origin: routesCopy[0],
-        destination: routesCopy[routesCopy.length-1],
+        origin: origin,
+        destination: destination,
         // eslint-disable-next-line no-undef
         travelMode: google.maps.TravelMode.DRIVING, 
-        waypoints: routesCopy,
+        waypoints: waypoints,
       })
       console.log(results);
+      console.log("ROUTE CALCULATED")
       setDirectionsResponse(results);
     }
     setup();
   }, [origin, destination, waypoints])
-
-  function displayRoutes(){
-
-  }
 
   function clearRoute () {
     setDirectionsResponse(null)
@@ -115,17 +149,19 @@ export default function MapContainer (props) {
   return (
     <div className="map-container" style={{display:(isDisplaying?"flex":"none")}}>
         <span className="map-top-text">Next Appointment:</span>
-      <div style={{ height: "350px", width: "100%" }}>
+      <div style={{ height: "300px", width: "100%" , }}>
         <GoogleMap
           center={center}
           zoom={15}
-          mapContainerStyle={{ width: '100%', height: '100%' }}
+          mapContainerStyle={{ width: '100%', height: '100%',  }}
           options={{
             zoomControl: false,
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
             mapId:"a8adcd4aada0b50f",
+            disableDefaultUI: true,
+            clickableIcons: false,
           }}
           onLoad={map => setMap(map)}
         >
