@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function ScheduleContainer(props){
     let {isDisplaying,userName} = props
-    let [patientData, setPatientData] = useState(null)
+    let [patientData, setPatientData] = useState("")
 
         useEffect(() => {
             console.log(userName)
@@ -40,7 +40,7 @@ export default function ScheduleContainer(props){
             {patientData &&
                 patientData.map((patientInfo,index) => (
                     index == 0?
-                    <PatientProfile patientInfo={patientInfo} statusColor={"#5A73C5"}/>
+                    <PatientProfile patientInfo={patientInfo} statusColor={"#FB8D7E"}/>
                     :
                     <PatientProfile patientInfo={patientInfo} statusColor={"#B3C3D3"}/>
 

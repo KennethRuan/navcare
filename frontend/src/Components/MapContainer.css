@@ -13,3 +13,95 @@
       display:flex !important;
     }
   }
+
+  .map-top-text {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    align-self: flex-start;
+  }
+
+  .profile-container{
+    min-width:200px;
+    max-width: 400px;
+    width:100%;
+    /*height:100px; /*tentative!*/
+
+    margin-block:8px;
+
+    display:flex;
+    flex-direction: column;
+    align-items:flex-start;
+}
+
+.patient-time-container{
+    width:100%;
+    height:40px;
+
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+}
+.patient-time{
+    font-size:16px;
+}
+
+
+.content-container{
+    width:100%;
+    min-height: 100px; /*tentative*/
+
+    background-color:rgb(203, 203, 203);
+
+    display:flex;
+
+
+}
+
+.patient-status{
+    width:8px;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.profile-picture-container{
+    padding-block:16px;
+    padding-inline:16px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background-color: white;
+}
+.profile-picture{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background-color: beige;
+}
+
+.patient-info-container{
+    padding-block:16px;
+    width:100%;
+    padding-inline:16px;
+    background-color:white;
+}
+
+.top-content{
+    width:100%;
+    display:flex;
+    padding-bottom: 8px;
+}
+.patient-name{
+    margin-right:auto;
+    font-size:16px;
+}
+.travel-time{
+    margin-left:auto;
+    font-size:16px;
+    font-weight: bold;
+}
+
+.extra-patient-info{
+    border: 0;
+    float: right;
+    background-color: transparent;
+}
