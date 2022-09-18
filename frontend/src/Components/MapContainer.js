@@ -10,11 +10,12 @@ import {
 } from '@react-google-maps/api'
 
 // define literals to avoid lots of rerendering
-const libraries = ['places']
-const mapContainerStyle = {
-  width: '100vw',
-  height: '100vh'
-}
+const libraries = ["places"]; 
+const mapContainerStyle={
+    height:"300px",
+    width:"100%"
+
+}; 
 
 const center = {
   lat: 43.6532,
@@ -22,6 +23,7 @@ const center = {
 }
 
 export default function MapContainer () {
+  let {isDisplaying} = props
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw',
     libraries
@@ -95,7 +97,8 @@ export default function MapContainer () {
             zoomControl: false,
             streetViewControl: false,
             mapTypeControl: false,
-            fullscreenControl: false
+            fullscreenControl: false,
+            mapId:"a8adcd4aada0b50f",
           }}
           onLoad={map => setMap(map)}
         >

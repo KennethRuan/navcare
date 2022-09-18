@@ -1,30 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-import MapContainer from './Components/MapContainer.js';
-import ProfileContainer from './Components/ProfileContainer.js';
-import PatientProfile from './Components/PatientProfile';
+import MainPage from './Components/MainPage.js'
+import {useState} from 'react'
+import Login from './Components/Login';
 
 function App() {
+  let [screenNum, setScreenNum] = useState(0);
+  let [userName, setUserName] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <PatientProfile/>
-        <MapContainer/>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {screenNum === 0 &&
+     <Login setScreenNum={setScreenNum} setUserName={setUserName}/>}
+    {screenNum === 1 && <MainPage userName={userName}/>}
+    </>
   );
 }
 
 export default App;
+

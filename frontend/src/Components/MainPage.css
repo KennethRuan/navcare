@@ -1,0 +1,50 @@
+.main-page {
+  
+  display:flex;
+  flex-direction:column;
+}
+.logo{
+  width:80px;
+  display:block;
+  margin:0 auto;
+}
+
+.main-content-container{
+  display:flex;
+  flex-direction:row;
+}
+
+.nav{
+  background-color:white;
+
+  width:100%;
+  display:flex;
+}
+
+
+
+.tab{
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border:0;
+  flex:1;
+  background-color:rgb(183, 205, 221);
+}
+
+.tab-active{
+  flex:2;
+  
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border:1px solid black;
+  border-bottom:0;
+  background-color:rgb(255, 255, 255);
+}
+
+@media only screen and (min-width: 600px) {
+  .nav{
+    display: none !important;
+  }
+}
+
+

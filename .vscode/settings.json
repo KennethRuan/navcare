@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "C:\\Users\\kenne\\OneDrive\\Documents\\htn-2022\\htn-2022",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true,
+        "**/__pycache__": true
+}}
