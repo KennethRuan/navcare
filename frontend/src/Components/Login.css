@@ -85,6 +85,15 @@
     color: #FB8D7E;
 }
 
+.change-account-login{
+    font-size: 12px;
+    border: 0;
+    background-color: transparent;
+    color: #FB8D7E;
+    display:block;
+    margin:0 auto;
+}
+
 .small-sign-up-button {
     font-size: 12px;
     border: 0;
