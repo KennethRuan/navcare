@@ -1,3 +1,4 @@
+import logging
 from tracemalloc import start
 from .models import PSW, ScheduleItem, Client
 from django.db.models import F, Func, ExpressionWrapper, DecimalField
@@ -54,46 +55,49 @@ def schedule(schedule_item):
 
     annotated_psws = PSW.objects.annotate(abs_calculation=ExpressionWrapper(Expression, output_field=DecimalField())).order_by('abs_calculation')
 
-    print(annotated_psws)
-    for psw in annotated_psws:
-        print(psw.abs_calculation)
-
-    potential_psws = annotated_psws.filter(abs_calculation__lt = 20)
-
-    print(potential_psws)
+    # print(annotated_psws)
+    # for psw in annotated_psws:
+    #     print(psw.abs_calculation)
 
     flag = False
+    upper_bound = 20
 
-    for psw in potential_psws:
-        print("===%s's Schedule===" % psw.name)
-        # print(psw._meta.fields)
-        schedule = ScheduleItem.objects.filter(psw__name=psw.name, date=cli_date)
+    while not flag or upper_bound <= 100:
 
-        available = True
-        if len(schedule) > 0:
-            for i, item in enumerate(schedule):
-                print("Task #%d" % i)
-                print("Starts at: %d:%02d" % ((item.start_time*15)//60, (item.start_time*15%60)))
-                print("Ends at: %d:%02d" % ((item.end_time*15)//60, (item.end_time*15%60)))
+        potential_psws = annotated_psws.filter(abs_calculation__lte = upper_bound).filter(abs_calculation__gte = upper_bound-20)
 
-            sorted_schedule = schedule.order_by('start_time')
-            print(len(sorted_schedule))
-            available = False
+        for psw in potential_psws:
+            # print("===%s's Schedule===" % psw.name)
+            # print(psw._meta.fields)
+            schedule = ScheduleItem.objects.filter(psw__name=psw.name, date=cli_date)
 
-            for i in range(len(sorted_schedule)):
-                # Iterates until the next job is later than the requested jobs end time
-                if sorted_schedule[i].start_time > cli_end_time: 
-                    # Check if the job starts after the PSW's previous job
-                    if i-1 < 0 or sorted_schedule[i-1].end_time < cli_start_time -1:
-                        available = True
-        
-        if available:
-            s = ScheduleItem(psw=psw, date=cli_date, client=cli, appointment_desc=apmt_desc, latitude=cli_lat, longitude=cli_lon, start_time=cli_start_time, end_time=cli_end_time)
-            s.save()
-            flag = True
-            break
+            available = True
+            if len(schedule) > 0:
+                # for i, item in enumerate(schedule):
+                    # print("Task #%d" % i)
+                    # print("Starts at: %d:%02d" % ((item.start_time*15)//60, (item.start_time*15%60)))
+                    # print("Ends at: %d:%02d" % ((item.end_time*15)//60, (item.end_time*15%60)))
+
+                sorted_schedule = schedule.order_by('start_time')
+                # print(len(sorted_schedule))
+                available = False
+
+                for i in range(len(sorted_schedule)):
+                    # Iterates until the next job is later than the requested jobs end time
+                    if sorted_schedule[i].start_time > cli_end_time: 
+                        # Check if the job starts after the PSW's previous job
+                        if i-1 < 0 or sorted_schedule[i-1].end_time < cli_start_time -1:
+                            available = True
+            
+            if available:
+                s = ScheduleItem(psw=psw, date=cli_date, client=cli, appointment_desc=apmt_desc, latitude=cli_lat, longitude=cli_lon, start_time=cli_start_time, end_time=cli_end_time)
+                s.save()
+                flag = True
+                break
+
+            upper_bound += 20
 
     if not flag:
-        print("Suitable PSW couldn't be found")
+        logging.debug("Suitable PSW couldn't be found")
                     
 

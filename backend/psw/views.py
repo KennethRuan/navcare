@@ -27,18 +27,18 @@ class AppointmentView(generics.ListAPIView):
         This view should return a list of all the appointments
         for the currently authenticated user.
         """
-        print(self.request.user)
-        print(self.request.GET.get('user',''))
+        # print(self.request.user)
+        # print(self.request.GET.get('user',''))
         # print(user)
 
         return ScheduleItem.objects.filter(psw__name=self.request.GET.get('user','')).order_by('start_time')
 
     def post(self, request):
-        print(request.data)
+        # print(request.data)
 
         data = request.data['data']
 
-        print(data)
+        # print(data)
 
         schedule_item = {}
         schedule_item["cli_name"] = data['name']

@@ -152,8 +152,7 @@ export default function MapContainer (props) {
 
   return (
     <div className="map-container" style={{display:(isDisplaying?"flex":"none")}}>
-        <span className="map-top-text">Next Appointment:</span>
-      <div style={{ height: "300px", width: "100%" , }}>
+      <div style={{ height: "300px", width: "100%", }}>
         <GoogleMap
           center={center}
           zoom={15}
@@ -175,6 +174,7 @@ export default function MapContainer (props) {
           )}
         </GoogleMap>
       </div>
+      <span className="map-top-text">Next Appointment:</span>
       {upcomingPatient && <PatientProfile patientInfo={upcomingPatient} statusColor={"#FB8D7E"}/>}
     </div>
   )
