@@ -1,0 +1,15 @@
+[{"location": {
+    "id": "ID of FIrst Place",
+    "lat":40.756795,
+    "lng":-73.954298
+  }},
+  {"location": {
+    "id": "ID of Second Place",
+    "lat":40.753167,
+    "lng":-73.968120
+  }},
+  {"location": {
+    "id": "ID of Third Place",
+    "lat":40.853167,
+    "lng":-73.968120
+  }}]

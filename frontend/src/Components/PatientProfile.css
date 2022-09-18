@@ -1,6 +1,6 @@
 :root {
     --body-colour: #27292C;
-    --primary: #5A73C5;
+    --primary: #FB8D7E;
 }
 
 .profile-container{
@@ -78,6 +78,7 @@
 .patient-name{
     margin-right:auto;
     font-size:16px;
+    font-weight: 600;
 }
 .travel-time{
     margin-left:auto;

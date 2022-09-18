@@ -27,7 +27,7 @@ export default function PatientProfile(props){
                 <div className="patient-status" style={{backgroundColor: statusColor}}></div>
 
                 <div className="profile-picture-container">
-                    <div className="profile-picture"></div>
+                    <div className="profile-picture"><img src='https://i.postimg.cc/bJrf7LTN/nursing-home-concept-illustration-114360-2816.jpg'></img></div>
                 </div>
 
                 <div className="patient-info-container">
