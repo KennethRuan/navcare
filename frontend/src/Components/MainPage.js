@@ -38,7 +38,7 @@ export default function MainPage(props) {
       <Nav/>
       <div className="main-content-container">
         <ScheduleContainer isDisplaying={scheduleDisplay} userName={userName}/>
-        <MapContainer isDisplaying={mapDisplay}/>
+        <MapContainer isDisplaying={mapDisplay} userName={userName}/>
       </div>    
     </div>
   );

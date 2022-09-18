@@ -35,6 +35,19 @@ export default function MapContainer (props) {
   const [distance, setDistance] = useState('')
   const [duration, setDuration] = useState('')
   const [routesData, setRoutesData] = useState("")
+  useEffect(() => {
+    console.log(userName)
+    axios.request({
+      method: 'GET',
+      url: '/api/appointments',
+      params: {
+        user: userName
+      },
+    }).then(res => {
+      console.log(res.data.json());
+      setRoutesData(res.data);
+    }); 
+  }, []);
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef()
@@ -47,18 +60,14 @@ export default function MapContainer (props) {
       stopover: true
     };
   });
-  useEffect(() => {
-    axios.request({
-        method: 'GET',
-        url: '/api/appointments',
-        params: {
-          user: userName
-        },
-      }).then(res => {
-        console.log(res.data);
-        setRoutesData(res.data);
-      }); 
-    });
+
+  // const routesCopy = routesData.map(route => { //get a json file and map it out into an array of objects 
+  //   return {
+  //     location: { lat: routesData.latitude, lng: routesData.longitude },
+  //     stopover: true
+  //   };
+  // });
+  
   const [origin, setOrigin] = useState(null);
   const [destination, setDestination] = useState(null);
   const [waypoints, setwaypoints] = useState(null);
