@@ -5,13 +5,13 @@ import Login from './Components/Login';
 
 function App() {
   let [screenNum, setScreenNum] = useState(0);
-  let [patientData, setPatientData] = useState(null);
+  let [userName, setUserName] = useState(null);
 
   return (
     <>
     {screenNum === 0 &&
-     <Login setScreenNum={setScreenNum} setPatientData={setPatientData}/>}
-    {screenNum === 1 && <MainPage/>}
+     <Login setScreenNum={setScreenNum} setUserName={setUserName}/>}
+    {screenNum === 1 && <MainPage userName={userName}/>}
     </>
   );
 }
