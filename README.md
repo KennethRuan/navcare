@@ -1,1 +1,3 @@
-"# htn-2022" 
+"# NavCare"
+
+Navcare is our solution to improve the scheduling and traveling experience for Personal Support Workers in Canada. It features an optimized shift schedule with vital information about where and when each appointment is happening and is designed to be within an optimal traveling distance. Patients are assigned to nurses such that the nurse will not have to travel more than 30 mins outside of their home radius to treat a patient. Additionally, it features a map that allows a nurse to see all the locations of their appointments in a day, as well as access the address to each one so they can easily travel there.
