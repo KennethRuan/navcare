@@ -1,5 +1,5 @@
 .doctor-form-container{
-    width:100vw;
+    width:100%;
     height:100vh;
     display:flex;
     justify-content:center;
@@ -9,5 +9,44 @@
 #doctor-form{
     display:flex;
     flex-direction:column;
-    
+}
+
+.places-container {
+    width: 50vw;
+}
+
+.combobox-input {
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+  }
+
+.length-select{
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+}
+
+.select-dropdown,
+.select-dropdown * {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+
+.select-dropdown select {
+	font-size: 1rem;
+	font-weight: normal;
+	max-width: 100%;
+	padding: 8px 24px 8px 10px;
+	background-color: transparent;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	appearance: none;
+}
+.select-dropdown select:active, .select-dropdown select:focus {
+	outline: none;
+	box-shadow: none;
 }
