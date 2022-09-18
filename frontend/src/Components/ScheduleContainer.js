@@ -25,7 +25,7 @@ export default function ScheduleContainer(props){
             {patientData &&
                 patientData.map((patientInfo,index) => (
                     index == 0?
-                    <PatientProfile patientInfo={patientInfo} statusColor={"#5A73C5"}/>
+                    <PatientProfile patientInfo={patientInfo} statusColor={"#FB8D7E"}/>
                     :
                     <PatientProfile patientInfo={patientInfo} statusColor={"#B3C3D3"}/>
 

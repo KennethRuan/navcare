@@ -31,8 +31,9 @@ export default function MapContainer(props){
 
     return(
         <div className="map-container" style={{display:(isDisplaying?"flex":"none")}}>
-            <span>Next Appointment</span>
+            <span>Next Appointment:</span>
             <GoogleMap mapContainerStyle = {mapContainerStyle} center={center} zoom={8} options={{ mapId:"a8adcd4aada0b50f" }}></GoogleMap>
+            {/* <hr style={{background:"#DCE2E8", height:"2px"}} /> */}
         </div>
         
    
