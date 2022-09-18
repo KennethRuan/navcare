@@ -47,7 +47,7 @@ export default function Login(props){
                 <button className="submit-button" type="submit" for="form-field-container">{action}</button>
             </form>
             <div className="user-action">
-                {action === "login" ? ( <div id="login-account-prompt">
+                {action === "Sign Up" ? ( <div id="login-account-prompt">
                     <span className="account-status-question">Already have an account?</span>
                     <button className="small-login-button" onClick={showLoginForm}>Login</button>
                 </div>)
