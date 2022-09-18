@@ -8,7 +8,10 @@ export default function ScheduleContainer(props){
 
         useEffect(() => {
             console.log(userName);
-            fetch("/api/appointments",{ params: { user: userName}})
+            fetch("/api/appointments",
+                { params: {
+                    user: userName
+                }})
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
