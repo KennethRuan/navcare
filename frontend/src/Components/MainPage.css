@@ -5,12 +5,8 @@
 }
 
 .logo{
-  width:80px;
+  width:150px;
   display:flex;
-}
-
-.app-name {
-  font-size: 24px;
 }
 
 .main-content-container{
@@ -26,26 +22,33 @@
 
 
 .logo-and-name {
+  margin-top: 16px;
+  margin-bottom: 16px;
   display:inline-flex;
   justify-content: center;
 }
 
 .tab{
   border: 1px solid #DCE2E8;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 2px 2px 0px 0px;
   flex:1;
   background: #F2F6FB;
+  height: 35px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .tab-active{
   flex:1;
   
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 2px 2px 0px 0px;
   border-width: 1px 1px 0px 1px;
   border-style: solid;
   border-color: #DCE2E8;
   border-bottom:0;
   background-color:rgb(255, 255, 255);
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 @media only screen and (min-width: 600px) {

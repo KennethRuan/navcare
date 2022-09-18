@@ -14,6 +14,12 @@
     }
   }
 
+  .map-top-text {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    align-self: flex-start;
+  }
+
   .profile-container{
     min-width:200px;
     max-width: 400px;

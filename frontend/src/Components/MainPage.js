@@ -33,8 +33,7 @@ export default function MainPage(props) {
   return (
     <div className="main-page">
       <div className='logo-and-name'>
-        <img class="logo" src="https://i.postimg.cc/dtHpH92t/HTN2022-Logo.png" alt="" />
-        <span class="app-name">Navcare</span>
+        <img class="logo" src="https://i.postimg.cc/d3tHbd1w/Group-27.png" alt="" />
       </div>
       <Nav/>
       <div className="main-content-container">
