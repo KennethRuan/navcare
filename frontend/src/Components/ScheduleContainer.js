@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function ScheduleContainer(props){
     let {isDisplaying,userName} = props
-    let [patientData, setPatientData] = useState(null)
+    let [patientData, setPatientData] = useState("")
 
         useEffect(() => {
             console.log(userName)

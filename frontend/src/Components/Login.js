@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 export default function Login(props){
     let [action, setAction] = useState("Login")
+    let [loggingInAsDoctor,setLoggingInAsDoctor] = useState(false);
     let {setScreenNum, setUserName} = props
 
     function showSignUpForm(){
