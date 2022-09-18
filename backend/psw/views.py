@@ -1,9 +1,15 @@
 from django.shortcuts import render
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from .serializers import ClientSerializer, AppointmentSerializer
 from .models import Client, ScheduleItem
 from .helper import schedule
+from datetime import datetime
 from django.http import HttpResponse
+from django.utils.decorators import method_decorator
+
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -12,6 +18,7 @@ class ClientView(viewsets.ModelViewSet):
     serializer_class = ClientSerializer
     queryset = Client.objects.all()
 
+@method_decorator(csrf_exempt, name='dispatch')
 class AppointmentView(generics.ListAPIView):
     serializer_class = AppointmentSerializer
     
@@ -24,9 +31,45 @@ class AppointmentView(generics.ListAPIView):
         print(self.request.GET.get('user',''))
         # print(user)
 
-        return ScheduleItem.objects.filter(psw__name=self.request.GET.get('user',''))
+        return ScheduleItem.objects.filter(psw__name=self.request.GET.get('user','')).order_by('start_time')
+
+    def post(self, request):
+        print(request.data)
+
+<<<<<<< HEAD
+        data = request.data['data']
+
+        print(data)
+
+        schedule_item = {}
+        schedule_item["cli_name"] = data['name']
+        schedule_item["cli_lat"] = data['lat']
+        schedule_item["cli_lon"] = data['long']
+        schedule_item["cli_notes"] = data['extraInfo']
+        schedule_item["date"] = datetime.today().strftime('%Y%m%d')
+        schedule_item["start_time"] = int(data['hour']) + int(data['minute'])
+        schedule_item["end_time"] = int(schedule_item["start_time"]) + int(data['endTime'])
+        schedule_item["apmt_desc"] = data['description']
+
+        # print(schedule_item)
+        schedule(schedule_item)
+=======
+        # schedule_item = {}
+        # schedule_item["cli_name"] = request.cli_name
+        # schedule_item["cli_lat"]
+        # schedule_item["cli_lon"]
+        # schedule_item["cli_notes"]
+        # schedule_item["date"]
+        # schedule_item["start_time"]
+        # schedule_item["end_time"]
+        # schedule_item["apmt_desc"]
+
+        # schedule(schedule_item)
+>>>>>>> a061f3f0e9b7ec27aaee201a4be088bcd2497916
+
+        return Response({}, status=status.HTTP_200_OK)    
 
 def main(request):
-    schedule()
+    # schedule()
     return HttpResponse("Processed the closest PSWs")
 
