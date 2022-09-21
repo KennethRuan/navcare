@@ -62,16 +62,17 @@ def schedule(schedule_item):
     flag = False
     upper_bound = 20
 
-    while not flag or upper_bound <= 100:
+    while not flag and upper_bound <= 100:
 
         potential_psws = annotated_psws.filter(abs_calculation__lte = upper_bound).filter(abs_calculation__gte = upper_bound-20)
-
+        print(potential_psws)
+        print(upper_bound)
         for psw in potential_psws:
             # print("===%s's Schedule===" % psw.name)
             # print(psw._meta.fields)
             schedule = ScheduleItem.objects.filter(psw__name=psw.name, date=cli_date)
-
-            available = True
+            
+            available = False
             if len(schedule) > 0:
                 # for i, item in enumerate(schedule):
                     # print("Task #%d" % i)
@@ -81,13 +82,14 @@ def schedule(schedule_item):
                 sorted_schedule = schedule.order_by('start_time')
                 # print(len(sorted_schedule))
                 available = False
-
+                print("run")
                 for i in range(len(sorted_schedule)):
                     # Iterates until the next job is later than the requested jobs end time
-                    if sorted_schedule[i].start_time > cli_end_time: 
+                    if sorted_schedule[i].start_time > cli_end_time or i == len(sorted_schedule)-1: 
                         # Check if the job starts after the PSW's previous job
                         if i-1 < 0 or sorted_schedule[i-1].end_time < cli_start_time -1:
                             available = True
+                            print("Found " + str(psw))
             
             if available:
                 s = ScheduleItem(psw=psw, date=cli_date, client=cli, appointment_desc=apmt_desc, latitude=cli_lat, longitude=cli_lon, start_time=cli_start_time, end_time=cli_end_time)
@@ -95,7 +97,7 @@ def schedule(schedule_item):
                 flag = True
                 break
 
-            upper_bound += 20
+        upper_bound += 20
 
     if not flag:
         logging.debug("Suitable PSW couldn't be found")

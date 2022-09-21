@@ -17,10 +17,11 @@ import usePlacesAutocomplete, {
   import "@reach/combobox/styles.css";
 
 let google = window.google;
+const APIKey = "";
 
 export default function DoctorForm() {
     const { isLoaded } = useLoadScript({
-      googleMapsApiKey: "AIzaSyAeufE-n5QFRUQU3TlBoKXxqNHmmCl-oEw",
+      googleMapsApiKey: APIKey,
       libraries: ["places"],
     });
   
@@ -50,12 +51,14 @@ function FormDisplay(){
 
     function submitDoctorForm(e){
         e.preventDefault();
+        console.log(dataObj["address"])
         let lat;
         let long; 
 
         let geocoder = new google.maps.Geocoder();
         let address = "200 Ring Rd, Waterloo, ON N2L 3G1"
         geocoder.geocode( { 'address': dataObj.address}, function(results, status) {
+            console.log(status)
             if (status == google.maps.GeocoderStatus.OK)
             {
                 lat = results[0].geometry.location.lat()
@@ -75,6 +78,7 @@ function FormDisplay(){
             .then(res => console.log(res))
     }
 
+
     const PlacesAutocomplete = () => {
         const {
           ready,
@@ -86,6 +90,7 @@ function FormDisplay(){
       
         const handleSelect = async (address) => {
           setValue(address, false);
+          dataObj["address"] = address
           clearSuggestions();
         };
       
